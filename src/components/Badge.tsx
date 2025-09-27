@@ -16,13 +16,15 @@ export const Badge: React.FC<BadgeProps> = ({
   text,
   variant = 'filled',
   mode = 'light',
-  font = 'Inter',
+  font,
   borderWidth = 0.5,
   className = '',
   onClick
 }) => {
   const colors = generateBadgeColors(text, mode);
-  const config: BadgeConfig = { font, borderWidth };
+  const config: BadgeConfig = {};
+  if (font) config.font = font;
+  if (borderWidth !== undefined) config.borderWidth = borderWidth;
   const styles = getBadgeStyles(colors, variant, config);
 
   return (

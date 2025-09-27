@@ -13,7 +13,7 @@ A lightweight React component library for creating beautiful, auto-colored badge
 - 🎨 **Pastel Color Palette** - Beautiful, consistent pastel colors from text
 - 🎭 **Two Variants** - Filled (with background) and Outline styles
 - 🌓 **Dark Mode Support** - Built-in light/dark mode with optimized colors
-- 🔤 **Inter Font Default** - Clean, modern font with customization options
+- 🔤 **Customizable Font** - Use any font family, defaults to system fonts
 - 🔧 **TypeScript Support** - Full type safety and IntelliSense support
 - ⚡ **Lightweight** - Minimal dependencies, optimized bundle size
 - 🎯 **Consistent** - Same text always generates the same color
@@ -55,7 +55,7 @@ The main component for rendering badges with pastel colors.
 - **Padding**: `2px 5px`
 - **Border Radius**: `5px`
 - **Border Width**: `0.5px`
-- **Font**: Inter (400 weight)
+- **Font**: System font stack
 - **Font Size**: `12px`
 - **Line Height**: `15px`
 
@@ -66,7 +66,7 @@ The main component for rendering badges with pastel colors.
 | `text` | `string` | *required* | The text to display in the badge |
 | `variant` | `'filled' \| 'outline'` | `'filled'` | Visual style variant |
 | `mode` | `'light' \| 'dark'` | `'light'` | Color mode for the badge |
-| `font` | `string` | `'Inter'` | Font family to use |
+| `font` | `string` | System fonts | Font family to use |
 | `borderWidth` | `number` | `0.5` | Border width in pixels (0 for no border) |
 | `className` | `string` | `undefined` | Additional CSS classes |
 | `onClick` | `function` | `undefined` | Click handler for interactive badges |

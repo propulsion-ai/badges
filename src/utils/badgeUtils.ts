@@ -21,7 +21,7 @@ export function getBadgeStyles(
   config: BadgeConfig = {}
 ): React.CSSProperties {
   const {
-    font = 'Inter',
+    font = 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
     borderWidth = 0.5
   } = config;
 
@@ -85,6 +85,7 @@ export function getBadgeVariant(
     textColor: colors.textColor
   };
 
+  // Don't specify font to use default system font stack
   return getBadgeStyles(colorScheme, newVariant, { borderWidth });
 }
 
