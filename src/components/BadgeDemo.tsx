@@ -27,6 +27,28 @@ export const BadgeDemo: React.FC = () => {
     transition: 'background-color 0.3s ease'
   };
 
+  const inputStyles: React.CSSProperties = {
+    width: '100%',
+    padding: '10px 14px',
+    fontSize: '14px',
+    border: `1px solid ${mode === 'dark' ? '#444' : '#ddd'}`,
+    borderRadius: '6px',
+    backgroundColor: mode === 'dark' ? '#2a2a2a' : '#fff',
+    color: mode === 'dark' ? '#fff' : '#000',
+    boxSizing: 'border-box',
+    transition: 'all 0.2s ease',
+    fontFamily: 'Inter, system-ui'
+  };
+
+  const labelStyles: React.CSSProperties = {
+    display: 'block',
+    marginBottom: '6px',
+    fontSize: '13px',
+    fontWeight: 500,
+    color: mode === 'dark' ? '#ccc' : '#555',
+    letterSpacing: '0.2px'
+  };
+
   return (
     <div style={containerStyles}>
       {/* Add Inter font import */}
@@ -36,68 +58,76 @@ export const BadgeDemo: React.FC = () => {
 
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-          <h2>Badge Generator Demo</h2>
+          <h2 style={{ fontSize: '28px', margin: 0 }}>Badge Generator Demo</h2>
           <button
             onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}
             style={{
-              padding: '8px 16px',
+              padding: '10px 20px',
               backgroundColor: mode === 'dark' ? '#333' : '#f0f0f0',
               color: mode === 'dark' ? '#fff' : '#000',
               border: 'none',
               borderRadius: '8px',
               cursor: 'pointer',
-              fontFamily: 'Inter, system-ui'
+              fontFamily: 'Inter, system-ui',
+              fontSize: '14px',
+              fontWeight: 500,
+              transition: 'all 0.2s ease'
             }}
           >
             {mode === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode'}
           </button>
         </div>
 
-        <div style={{ marginBottom: '2rem', padding: '1.5rem', backgroundColor: mode === 'dark' ? '#2a2a2a' : '#f9f9f9', borderRadius: '8px' }}>
-          <h3>Interactive Demo</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '1rem' }}>
+        {/* Interactive Controls */}
+        <div style={{
+          marginBottom: '3rem',
+          padding: '2rem',
+          backgroundColor: mode === 'dark' ? '#2a2a2a' : '#f9f9f9',
+          borderRadius: '12px',
+          border: `1px solid ${mode === 'dark' ? '#333' : '#e5e5e5'}`
+        }}>
+          <h3 style={{ marginTop: 0, marginBottom: '1.5rem', fontSize: '18px' }}>Interactive Controls</h3>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gap: '1.5rem',
+            marginBottom: '2rem'
+          }}>
             <div>
-              <label style={{ display: 'block', marginBottom: '4px', fontSize: '12px' }}>Text</label>
+              <label style={labelStyles}>Text Content</label>
               <input
                 type="text"
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 placeholder="Enter badge text..."
-                style={{
-                  width: '100%',
-                  padding: '8px 12px',
-                  fontSize: '14px',
-                  border: `1px solid ${mode === 'dark' ? '#444' : '#ccc'}`,
-                  borderRadius: '4px',
-                  backgroundColor: mode === 'dark' ? '#333' : '#fff',
-                  color: mode === 'dark' ? '#fff' : '#000'
-                }}
+                style={inputStyles}
               />
             </div>
 
             <div>
-              <label style={{ display: 'block', marginBottom: '4px', fontSize: '12px' }}>Variant</label>
+              <label style={labelStyles}>Variant</label>
               <select
                 value={variant}
                 onChange={(e) => setVariant(e.target.value as BadgeVariant)}
                 style={{
-                  width: '100%',
-                  padding: '8px 12px',
-                  fontSize: '14px',
-                  border: `1px solid ${mode === 'dark' ? '#444' : '#ccc'}`,
-                  borderRadius: '4px',
-                  backgroundColor: mode === 'dark' ? '#333' : '#fff',
-                  color: mode === 'dark' ? '#fff' : '#000'
+                  ...inputStyles,
+                  cursor: 'pointer',
+                  appearance: 'none',
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='${mode === 'dark' ? '%23999' : '%23666'}' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'right 12px center',
+                  paddingRight: '36px'
                 }}
               >
                 {variants.map(v => (
-                  <option key={v} value={v}>{v}</option>
+                  <option key={v} value={v}>{v.charAt(0).toUpperCase() + v.slice(1)}</option>
                 ))}
               </select>
             </div>
 
             <div>
-              <label style={{ display: 'block', marginBottom: '4px', fontSize: '12px' }}>Border Width</label>
+              <label style={labelStyles}>Border Width (px)</label>
               <input
                 type="number"
                 value={borderWidth}
@@ -105,31 +135,23 @@ export const BadgeDemo: React.FC = () => {
                 min="0"
                 max="2"
                 step="0.25"
-                style={{
-                  width: '100%',
-                  padding: '8px 12px',
-                  fontSize: '14px',
-                  border: `1px solid ${mode === 'dark' ? '#444' : '#ccc'}`,
-                  borderRadius: '4px',
-                  backgroundColor: mode === 'dark' ? '#333' : '#fff',
-                  color: mode === 'dark' ? '#fff' : '#000'
-                }}
+                style={inputStyles}
               />
             </div>
 
             <div>
-              <label style={{ display: 'block', marginBottom: '4px', fontSize: '12px' }}>Font</label>
+              <label style={labelStyles}>Font Family</label>
               <select
                 value={font}
                 onChange={(e) => setFont(e.target.value)}
                 style={{
-                  width: '100%',
-                  padding: '8px 12px',
-                  fontSize: '14px',
-                  border: `1px solid ${mode === 'dark' ? '#444' : '#ccc'}`,
-                  borderRadius: '4px',
-                  backgroundColor: mode === 'dark' ? '#333' : '#fff',
-                  color: mode === 'dark' ? '#fff' : '#000'
+                  ...inputStyles,
+                  cursor: 'pointer',
+                  appearance: 'none',
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='${mode === 'dark' ? '%23999' : '%23666'}' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'right 12px center',
+                  paddingRight: '36px'
                 }}
               >
                 {fonts.map(f => (
@@ -139,8 +161,16 @@ export const BadgeDemo: React.FC = () => {
             </div>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <span style={{ fontSize: '14px' }}>Result:</span>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '1rem',
+            padding: '1.5rem',
+            backgroundColor: mode === 'dark' ? '#1a1a1a' : '#fff',
+            borderRadius: '8px',
+            border: `1px solid ${mode === 'dark' ? '#3a3a3a' : '#e5e5e5'}`
+          }}>
+            <span style={{ fontSize: '14px', fontWeight: 500, color: mode === 'dark' ? '#999' : '#666' }}>Preview:</span>
             <Badge
               text={inputText}
               variant={variant}
@@ -151,42 +181,89 @@ export const BadgeDemo: React.FC = () => {
           </div>
         </div>
 
-        <div style={{ marginBottom: '2rem' }}>
-          <h3>Variant Comparison</h3>
-          <div style={{ display: 'flex', gap: '2rem', marginBottom: '1rem' }}>
-            <div>
-              <div style={{ fontSize: '14px', marginBottom: '8px', opacity: 0.7 }}>Filled (with background)</div>
+        {/* Variant Comparison */}
+        <div style={{ marginBottom: '3rem' }}>
+          <h3 style={{ fontSize: '18px', marginBottom: '1.5rem' }}>Variant Comparison</h3>
+          <div style={{
+            display: 'flex',
+            gap: '3rem',
+            padding: '1.5rem',
+            backgroundColor: mode === 'dark' ? '#2a2a2a' : '#f9f9f9',
+            borderRadius: '8px'
+          }}>
+            <div style={{ flex: 1 }}>
+              <div style={{ fontSize: '13px', marginBottom: '10px', color: mode === 'dark' ? '#999' : '#666', fontWeight: 500 }}>
+                Filled (with background)
+              </div>
               <Badge text="Filled" variant="filled" mode={mode} />
             </div>
-            <div>
-              <div style={{ fontSize: '14px', marginBottom: '8px', opacity: 0.7 }}>Outline (no background)</div>
+            <div style={{ flex: 1 }}>
+              <div style={{ fontSize: '13px', marginBottom: '10px', color: mode === 'dark' ? '#999' : '#666', fontWeight: 500 }}>
+                Outline (transparent)
+              </div>
               <Badge text="Outline" variant="outline" mode={mode} />
             </div>
-            <div>
-              <div style={{ fontSize: '14px', marginBottom: '8px', opacity: 0.7 }}>Ghost (no border)</div>
+            <div style={{ flex: 1 }}>
+              <div style={{ fontSize: '13px', marginBottom: '10px', color: mode === 'dark' ? '#999' : '#666', fontWeight: 500 }}>
+                Ghost (no border)
+              </div>
               <Badge text="Ghost" variant="outline" mode={mode} borderWidth={0} />
             </div>
           </div>
         </div>
 
-        <div style={{ marginBottom: '2rem' }}>
-          <h3>Color Consistency Demo</h3>
-          <p style={{ fontSize: '14px', opacity: 0.7, marginBottom: '1rem' }}>
+        {/* Color Consistency */}
+        <div style={{ marginBottom: '3rem' }}>
+          <h3 style={{ fontSize: '18px', marginBottom: '1rem' }}>Color Consistency</h3>
+          <p style={{ fontSize: '14px', color: mode === 'dark' ? '#999' : '#666', marginBottom: '1.5rem' }}>
             Same text always generates the same pastel colors
           </p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+          <div style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '10px',
+            padding: '1.5rem',
+            backgroundColor: mode === 'dark' ? '#2a2a2a' : '#f9f9f9',
+            borderRadius: '8px'
+          }}>
             {examples.map(example => (
               <Badge key={example} text={example} variant={variant} mode={mode} />
             ))}
           </div>
         </div>
 
-        <div style={{ marginBottom: '2rem' }}>
-          <h3>Clickable Badges</h3>
-          <p style={{ fontSize: '14px', opacity: 0.7, marginBottom: '1rem' }}>
-            Badges can be interactive
+        {/* Border Width Examples */}
+        <div style={{ marginBottom: '3rem' }}>
+          <h3 style={{ fontSize: '18px', marginBottom: '1rem' }}>Border Width Variations</h3>
+          <div style={{
+            display: 'flex',
+            gap: '15px',
+            alignItems: 'center',
+            padding: '1.5rem',
+            backgroundColor: mode === 'dark' ? '#2a2a2a' : '#f9f9f9',
+            borderRadius: '8px'
+          }}>
+            <Badge text="0px" variant="filled" mode={mode} borderWidth={0} />
+            <Badge text="0.25px" variant="filled" mode={mode} borderWidth={0.25} />
+            <Badge text="0.5px" variant="filled" mode={mode} borderWidth={0.5} />
+            <Badge text="0.75px" variant="filled" mode={mode} borderWidth={0.75} />
+            <Badge text="1px" variant="filled" mode={mode} borderWidth={1} />
+          </div>
+        </div>
+
+        {/* Interactive Examples */}
+        <div style={{ marginBottom: '3rem' }}>
+          <h3 style={{ fontSize: '18px', marginBottom: '1rem' }}>Interactive Badges</h3>
+          <p style={{ fontSize: '14px', color: mode === 'dark' ? '#999' : '#666', marginBottom: '1.5rem' }}>
+            Click these badges to see them in action
           </p>
-          <div style={{ display: 'flex', gap: '8px' }}>
+          <div style={{
+            display: 'flex',
+            gap: '12px',
+            padding: '1.5rem',
+            backgroundColor: mode === 'dark' ? '#2a2a2a' : '#f9f9f9',
+            borderRadius: '8px'
+          }}>
             <Badge
               text="Click me!"
               variant="filled"
@@ -198,6 +275,13 @@ export const BadgeDemo: React.FC = () => {
               variant="outline"
               mode={mode}
               onClick={() => alert('Outline badge clicked!')}
+            />
+            <Badge
+              text="Me too!"
+              variant="outline"
+              mode={mode}
+              borderWidth={0}
+              onClick={() => alert('Ghost badge clicked!')}
             />
           </div>
         </div>

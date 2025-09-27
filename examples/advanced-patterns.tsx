@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Badge } from '../src/components/Badge';
-import type { BadgeVariant } from '../src/types/types';
+import type { BadgeVariant, BadgeMode } from '../src/types/types';
 
 export function AdvancedPatternsExample() {
   const [tags, setTags] = useState(['React', 'TypeScript', 'Vite', 'Testing']);
   const [newTag, setNewTag] = useState('');
-  const [variant, setVariant] = useState<BadgeVariant>('solid');
+  const [variant, setVariant] = useState<BadgeVariant>('filled');
+  const [mode, setMode] = useState<BadgeMode>('light');
 
   const addTag = () => {
     if (newTag.trim() && !tags.includes(newTag.trim())) {
@@ -19,7 +20,28 @@ export function AdvancedPatternsExample() {
   };
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div style={{
+      padding: '20px',
+      backgroundColor: mode === 'dark' ? '#1a1a1a' : '#ffffff',
+      color: mode === 'dark' ? '#ffffff' : '#000000',
+      minHeight: '500px'
+    }}>
+      <div style={{ marginBottom: '20px' }}>
+        <button
+          onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}
+          style={{
+            padding: '8px 16px',
+            backgroundColor: mode === 'dark' ? '#333' : '#f0f0f0',
+            color: mode === 'dark' ? '#fff' : '#000',
+            border: 'none',
+            borderRadius: '8px',
+            cursor: 'pointer'
+          }}
+        >
+          {mode === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode'}
+        </button>
+      </div>
+
       <h2>Advanced Badge Patterns</h2>
 
       <h3>Dynamic Tags Management</h3>
@@ -47,10 +69,8 @@ export function AdvancedPatternsExample() {
           onChange={(e) => setVariant(e.target.value as BadgeVariant)}
           style={{ padding: '4px' }}
         >
-          <option value="solid">Solid</option>
+          <option value="filled">Filled</option>
           <option value="outline">Outline</option>
-          <option value="ghost">Ghost</option>
-          <option value="soft">Soft</option>
         </select>
       </div>
 
@@ -60,7 +80,7 @@ export function AdvancedPatternsExample() {
             key={tag}
             style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}
           >
-            <Badge text={tag} variant={variant} />
+            <Badge text={tag} variant={variant} mode={mode} />
             <button
               onClick={() => removeTag(tag)}
               style={{
@@ -78,25 +98,25 @@ export function AdvancedPatternsExample() {
 
       <h3 style={{ marginTop: '40px' }}>User Roles & Permissions</h3>
       <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
-        <Badge text="Admin" variant="solid" />
-        <Badge text="Editor" variant="outline" />
-        <Badge text="Viewer" variant="ghost" />
-        <Badge text="Guest" variant="soft" />
+        <Badge text="Admin" variant="filled" mode={mode} />
+        <Badge text="Editor" variant="outline" mode={mode} />
+        <Badge text="Viewer" variant="outline" mode={mode} borderWidth={0} />
+        <Badge text="Guest" variant="filled" mode={mode} />
       </div>
 
       <h3>File Types</h3>
       <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
         {['PDF', 'DOC', 'XLS', 'PPT', 'ZIP', 'IMG', 'VIDEO', 'AUDIO'].map(type => (
-          <Badge key={type} text={type} />
+          <Badge key={type} text={type} mode={mode} />
         ))}
       </div>
 
       <h3 style={{ marginTop: '20px' }}>Priority Levels</h3>
       <div style={{ display: 'flex', gap: '10px' }}>
-        <Badge text="Critical" variant="solid" />
-        <Badge text="High" variant="solid" />
-        <Badge text="Medium" variant="outline" />
-        <Badge text="Low" variant="ghost" />
+        <Badge text="Critical" variant="filled" mode={mode} />
+        <Badge text="High" variant="filled" mode={mode} />
+        <Badge text="Medium" variant="outline" mode={mode} />
+        <Badge text="Low" variant="outline" mode={mode} borderWidth={0} />
       </div>
     </div>
   );

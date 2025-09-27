@@ -38,8 +38,8 @@ function App() {
     <div>
       <Badge text="New Feature" />
       <Badge text="Bug Fix" variant="outline" />
-      <Badge text="Documentation" variant="ghost" />
-      <Badge text="Beta" variant="soft" />
+      <Badge text="Documentation" mode="dark" />
+      <Badge text="Beta" borderWidth={0} />
     </div>
   );
 }
@@ -80,8 +80,14 @@ The main component for rendering badges with pastel colors.
 // With variant
 <Badge text="Priority" variant="outline" />
 
-// With custom styling
-<Badge text="Custom" className="my-custom-class" />
+// Dark mode
+<Badge text="Dark" mode="dark" />
+
+// Ghost (no border)
+<Badge text="Ghost" variant="outline" borderWidth={0} />
+
+// Custom font
+<Badge text="Custom" font="Arial" />
 ```
 
 ### Utility Functions
@@ -97,23 +103,24 @@ const colors = generateBadgeColorPairs('example');
 // Returns: { backgroundColor: '#...', textColor: '#...' }
 ```
 
-#### `getBadgeVariant(colors, variant)`
+#### `generateBadgeColors(text, mode)`
 
-Apply variant-specific styling to color pairs.
+Generate complete color scheme with pastel colors.
 
 ```ts
-import { getBadgeVariant } from 'badge-generator';
+import { generateBadgeColors } from 'badge-generator';
 
-const styledColors = getBadgeVariant(colors, 'outline');
+const colors = generateBadgeColors('example', 'light');
+// Returns: { backgroundColor: '#...', borderColor: '#...', textColor: '#...' }
 ```
 
 ## 🎨 Variants
 
-### Solid (Default)
-Full background color with contrasting text.
+### Filled (Default)
+Full background color with border and contrasting text.
 
 ```tsx
-<Badge text="Solid" variant="solid" />
+<Badge text="Filled" variant="filled" />
 ```
 
 ### Outline
@@ -123,18 +130,11 @@ Transparent background with colored border and text.
 <Badge text="Outline" variant="outline" />
 ```
 
-### Ghost
-Transparent background with semi-transparent colored text.
+### Ghost (No Border)
+Transparent background with no border.
 
 ```tsx
-<Badge text="Ghost" variant="ghost" />
-```
-
-### Soft
-Light background with matching colored text.
-
-```tsx
-<Badge text="Soft" variant="soft" />
+<Badge text="Ghost" variant="outline" borderWidth={0} />
 ```
 
 ## 🛠️ Development
