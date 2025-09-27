@@ -45,5 +45,5 @@ vite.config.d.ts
 vite.demo.config.js
 vite.demo.config.d.ts
 
-# Package-lock (optional - remove this line if you want to commit package-lock.json)
-package-lock.json
+# Package-lock (keep this file for CI/CD)
+# package-lock.json
