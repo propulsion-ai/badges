@@ -39,5 +39,11 @@ logs
 # Coverage directory used by tools like istanbul
 coverage/
 
+# Generated TypeScript files from Vite configs
+vite.config.js
+vite.config.d.ts
+vite.demo.config.js
+vite.demo.config.d.ts
+
 # Package-lock (optional - remove this line if you want to commit package-lock.json)
 package-lock.json

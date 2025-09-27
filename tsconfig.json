@@ -10,14 +10,13 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": false,
     "jsx": "react-jsx",
     "declaration": true,
     "outDir": "./dist",
-    "rootDir": "./",
     "removeComments": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -26,8 +25,15 @@
     "noImplicitOverride": true
   },
   "include": [
-    "*.ts",
-    "*.tsx"
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "tests/**/*.ts",
+    "tests/**/*.tsx",
+    "examples/**/*.tsx",
+    "demo/**/*.tsx",
+    "vite.config.ts",
+    "vite.demo.config.ts",
+    "jest.config.js"
   ],
   "exclude": [
     "node_modules",
