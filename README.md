@@ -14,6 +14,7 @@ A lightweight React component library for creating beautiful, auto-colored badge
 - 🎭 **Two Variants** - Filled (with background) and Outline styles
 - 🌓 **Dark Mode Support** - Built-in light/dark mode with optimized colors
 - 🔤 **Customizable Font** - Use any font family, defaults to system fonts
+- 🎮 **Interactive Playground** - Fine-tune colors with our live editor
 - 🔧 **TypeScript Support** - Full type safety and IntelliSense support
 - ⚡ **Lightweight** - Minimal dependencies, optimized bundle size
 - 🎯 **Consistent** - Same text always generates the same color
@@ -218,9 +219,30 @@ Developed with ❤️ by [Propulsion AI](https://propulsion.ai)
 
 Co-authored by [Claude](https://claude.ai) - AI assistant that helped architect, implement, and refine the library's pastel color generation system and overall structure.
 
+## 🎨 Color Playground
+
+Visit our [interactive Color Playground](https://propulsion-ai.github.io/badges/) to customize the pastel color parameters to your liking. The playground allows you to:
+
+- Adjust saturation and lightness for backgrounds, borders, and text
+- Preview changes in real-time with multiple sample badges
+- Toggle between light and dark modes
+- Export your custom color settings for use in your own projects
+
+### Default Color Values
+
+**Light Mode:**
+- Background: 40% saturation, 94% lightness
+- Border: 50% saturation, 85% lightness
+- Text: 90% saturation, 35% lightness
+
+**Dark Mode:**
+- Background: 30% saturation, 15% lightness
+- Border: 40% saturation, 25% lightness
+- Text: 50% saturation, 75% lightness
+
 ## 🔗 Links
 
-- [Demo](https://propulsion-ai.github.io/badges/)
+- [Demo & Color Playground](https://propulsion-ai.github.io/badges/)
 - [npm Package](https://www.npmjs.com/package/consistint)
 - [GitHub Repository](https://github.com/propulsion-ai/badges)
 - [Issue Tracker](https://github.com/propulsion-ai/badges/issues)
