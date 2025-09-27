@@ -1,7 +1,7 @@
 {
-  "name": "@propulsion-ai/badge-generator",
+  "name": "consistint",
   "version": "1.0.0",
-  "description": "A lightweight React component library for creating beautiful, auto-colored badges with pastel colors",
+  "description": "Consistent tints for your badges - A lightweight React component library for creating beautiful, auto-colored badges with consistent pastel colors",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
