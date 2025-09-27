@@ -1,4 +1,5 @@
 import ColorHash from 'color-hash';
+import { ColorParameters } from '../types/types';
 
 // Use higher saturation and lightness for pastel colors
 const colorHash = new ColorHash({
@@ -99,9 +100,13 @@ function hslToHex(h: number, s: number, l: number): string {
 }
 
 /**
- * Generate pastel color scheme from base color
+ * Generate pastel color scheme from base color with custom parameters
  */
-export function generatePastelColors(baseColor: string, mode: 'light' | 'dark' = 'light') {
+export function generatePastelColors(
+  baseColor: string,
+  mode: 'light' | 'dark' = 'light',
+  customParams?: ColorParameters
+) {
   const rgb = hexToRgb(baseColor);
   const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
 
@@ -110,15 +115,41 @@ export function generatePastelColors(baseColor: string, mode: 'light' | 'dark' =
   let textColor: string;
 
   if (mode === 'light') {
+    const params = customParams?.light || {};
     // Light mode: very light background, medium border/text
-    backgroundColor = hslToHex(hsl.h, hsl.s * 0.4, 0.94); // Very light pastel background
-    borderColor = hslToHex(hsl.h, hsl.s * 0.5, 0.85); // Slightly darker border
-    textColor = hslToHex(hsl.h, hsl.s * 0.9, 0.35); // Darker text for contrast
+    backgroundColor = hslToHex(
+      hsl.h,
+      hsl.s * (params.backgroundSaturation ?? 1),
+      params.backgroundLightness ?? 0.95
+    );
+    borderColor = hslToHex(
+      hsl.h,
+      hsl.s * (params.borderSaturation ?? 0.5),
+      params.borderLightness ?? 0.85
+    );
+    textColor = hslToHex(
+      hsl.h,
+      hsl.s * (params.textSaturation ?? 0.9),
+      params.textLightness ?? 0.33
+    );
   } else {
+    const params = customParams?.dark || {};
     // Dark mode: darker background, lighter border/text
-    backgroundColor = hslToHex(hsl.h, hsl.s * 0.3, 0.15); // Dark background
-    borderColor = hslToHex(hsl.h, hsl.s * 0.4, 0.25); // Slightly lighter border
-    textColor = hslToHex(hsl.h, hsl.s * 0.5, 0.75); // Light text for contrast
+    backgroundColor = hslToHex(
+      hsl.h,
+      hsl.s * (params.backgroundSaturation ?? 1),
+      params.backgroundLightness ?? 0.17
+    );
+    borderColor = hslToHex(
+      hsl.h,
+      hsl.s * (params.borderSaturation ?? 0.8),
+      params.borderLightness ?? 0.29
+    );
+    textColor = hslToHex(
+      hsl.h,
+      hsl.s * (params.textSaturation ?? 0.7),
+      params.textLightness ?? 0.84
+    );
   }
 
   return {

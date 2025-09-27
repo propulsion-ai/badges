@@ -8,6 +8,8 @@
 
 A lightweight React component library for creating beautiful, auto-colored badges with consistent color generation based on text content.
 
+🎯 **[Live Demo & Playground →](https://propulsion-ai.github.io/badges/)**
+
 ## ✨ Features
 
 - 🎨 **Pastel Color Palette** - Beautiful, consistent pastel colors from text
@@ -40,11 +42,52 @@ function App() {
       <Badge text="New Feature" />
       <Badge text="Bug Fix" variant="outline" />
       <Badge text="Documentation" mode="dark" />
-      <Badge text="Beta" borderWidth={0} />
+      <Badge text="Beta" variant="ghost" />  {/* Ghost variant = no border */}
     </div>
   );
 }
 ```
+
+### Customizing Color Generation
+
+You can customize how colors are generated using the `colorParams` prop. This allows you to adjust the saturation and lightness values used in the HSL color generation:
+
+```tsx
+import { Badge, ColorParameters } from 'consistint';
+
+function App() {
+  // Custom pastel parameters
+  const customColorParams: ColorParameters = {
+    light: {
+      backgroundSaturation: 0.3,  // Softer background (default: 0.4)
+      backgroundLightness: 0.96,   // Lighter background (default: 0.94)
+      borderSaturation: 0.4,       // Softer border (default: 0.5)
+      borderLightness: 0.88,       // Lighter border (default: 0.85)
+      textSaturation: 0.8,         // Less saturated text (default: 0.9)
+      textLightness: 0.3           // Lighter text (default: 0.35)
+    },
+    dark: {
+      backgroundSaturation: 0.25,  // Adjust dark mode too
+      backgroundLightness: 0.12,
+      borderSaturation: 0.35,
+      borderLightness: 0.22,
+      textSaturation: 0.45,
+      textLightness: 0.8
+    }
+  };
+
+  return (
+    <div>
+      {/* Use custom color parameters for all badges */}
+      <Badge text="Softer" colorParams={customColorParams} />
+      <Badge text="Pastel" colorParams={customColorParams} />
+      <Badge text="Colors" colorParams={customColorParams} mode="dark" />
+    </div>
+  );
+}
+```
+
+You can also use the Color Playground at https://propulsion-ai.github.io/badges/ to experiment with different values and find your perfect color scheme.
 
 ## 📖 Documentation
 
@@ -55,19 +98,17 @@ The main component for rendering badges with pastel colors.
 #### Default Styles
 - **Padding**: `2px 5px`
 - **Border Radius**: `5px`
-- **Border Width**: `0.5px`
-- **Font**: System font stack
-- **Font Size**: `12px`
-- **Line Height**: `15px`
+- **Border Width**: `0.5px` (0 for ghost variant)
+- **Typography**: Inherits from parent (font, size, weight, line-height)
 
 #### Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `text` | `string` | *required* | The text to display in the badge |
-| `variant` | `'filled' \| 'outline'` | `'filled'` | Visual style variant |
+| `variant` | `'filled' \| 'outline' \| 'ghost'` | `'filled'` | Visual style variant (ghost = no border) |
 | `mode` | `'light' \| 'dark'` | `'light'` | Color mode for the badge |
-| `font` | `string` | System fonts | Font family to use |
+| `font` | `string` | Inherit | Font family (inherits from parent by default) |
 | `borderWidth` | `number` | `0.5` | Border width in pixels (0 for no border) |
 | `className` | `string` | `undefined` | Additional CSS classes |
 | `onClick` | `function` | `undefined` | Click handler for interactive badges |
@@ -231,14 +272,14 @@ Visit our [interactive Color Playground](https://propulsion-ai.github.io/badges/
 ### Default Color Values
 
 **Light Mode:**
-- Background: 40% saturation, 94% lightness
+- Background: 100% saturation, 95% lightness
 - Border: 50% saturation, 85% lightness
-- Text: 90% saturation, 35% lightness
+- Text: 90% saturation, 33% lightness
 
 **Dark Mode:**
-- Background: 30% saturation, 15% lightness
-- Border: 40% saturation, 25% lightness
-- Text: 50% saturation, 75% lightness
+- Background: 100% saturation, 17% lightness
+- Border: 80% saturation, 29% lightness
+- Text: 70% saturation, 84% lightness
 
 ## 🔗 Links
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { generateBadgeColors, getBadgeStyles } from '../utils/badgeUtils';
-import { BadgeVariant, BadgeMode, BadgeConfig } from '../types/types';
+import { BadgeVariant, BadgeMode, BadgeConfig, ColorScheme, ColorParameters } from '../types/types';
 
 interface BadgeProps {
   text: string;
@@ -10,6 +10,8 @@ interface BadgeProps {
   borderWidth?: number;
   className?: string;
   onClick?: () => void;
+  colors?: ColorScheme;  // Allow custom color scheme
+  colorParams?: ColorParameters;  // Allow custom HSL parameters
 }
 
 export const Badge: React.FC<BadgeProps> = ({
@@ -17,14 +19,20 @@ export const Badge: React.FC<BadgeProps> = ({
   variant = 'filled',
   mode = 'light',
   font,
-  borderWidth = 0.5,
+  borderWidth,
   className = '',
-  onClick
+  onClick,
+  colors: customColors,
+  colorParams
 }) => {
-  const colors = generateBadgeColors(text, mode);
+  // Ghost variant always has no border
+  const effectiveBorderWidth = variant === 'ghost' ? 0 : (borderWidth ?? 0.5);
+
+  // Use custom colors if provided, otherwise generate from text with optional parameters
+  const colors = customColors || generateBadgeColors(text, mode, colorParams);
   const config: BadgeConfig = {};
   if (font) config.font = font;
-  if (borderWidth !== undefined) config.borderWidth = borderWidth;
+  config.borderWidth = effectiveBorderWidth;
   const styles = getBadgeStyles(colors, variant, config);
 
   return (

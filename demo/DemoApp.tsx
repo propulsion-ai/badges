@@ -29,12 +29,12 @@ export function DemoApp() {
       maxWidth: '1200px',
       margin: '0 auto',
       padding: '20px',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+      fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
     }}>
       <header style={{ textAlign: 'center', marginBottom: '40px' }}>
         <h1 style={{ color: '#333', fontSize: '2.5rem' }}>Consistint</h1>
         <p style={{ color: '#666', fontSize: '1.1rem' }}>
-          A React component library for creating colorful, auto-generated badges
+          Beautiful, consistent pastel badges that inherit your typography
         </p>
         <div style={{ marginTop: '20px' }}>
           <a

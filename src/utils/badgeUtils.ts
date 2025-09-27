@@ -1,15 +1,16 @@
 import { getColorFromText, generatePastelColors } from './colorMapper';
-import { BadgeVariant, BadgeMode, BadgeConfig, ColorScheme } from '../types/types';
+import { BadgeVariant, BadgeMode, BadgeConfig, ColorScheme, ColorParameters } from '../types/types';
 
 /**
- * Generate badge color scheme from text
+ * Generate badge color scheme from text with optional custom parameters
  */
 export function generateBadgeColors(
   text: string,
-  mode: BadgeMode = 'light'
+  mode: BadgeMode = 'light',
+  colorParams?: ColorParameters
 ): ColorScheme {
   const baseColor = getColorFromText(text);
-  return generatePastelColors(baseColor, mode);
+  return generatePastelColors(baseColor, mode, colorParams);
 }
 
 /**
@@ -20,10 +21,7 @@ export function getBadgeStyles(
   variant: BadgeVariant = 'filled',
   config: BadgeConfig = {}
 ): React.CSSProperties {
-  const {
-    font = 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-    borderWidth = 0.5
-  } = config;
+  const { font, borderWidth = 0.5 } = config;
 
   const baseStyles: React.CSSProperties = {
     boxSizing: 'border-box',
@@ -34,17 +32,19 @@ export function getBadgeStyles(
     padding: '2px 5px',
     gap: '10px',
     borderRadius: '5px',
-    fontFamily: font,
-    fontStyle: 'normal',
-    fontWeight: 400,
-    fontSize: '12px',
-    lineHeight: '15px',
+    // Inherit typography by default, only set font if explicitly provided
+    ...(font && { fontFamily: font }),
+    // Don't set font properties unless needed - inherit from parent
+    fontStyle: 'inherit',
+    fontWeight: 'inherit',
+    fontSize: 'inherit',
+    lineHeight: 'inherit',
     flexShrink: 0,
     userSelect: 'none',
     transition: 'all 0.2s ease'
   };
 
-  if (variant === 'outline') {
+  if (variant === 'outline' || variant === 'ghost') {
     return {
       ...baseStyles,
       backgroundColor: 'transparent',
