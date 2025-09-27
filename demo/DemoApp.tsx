@@ -3,9 +3,10 @@ import { BadgeDemo } from '../src/components/BadgeDemo';
 import { BasicUsageExample } from '../examples/basic-usage';
 import { VariantsExample } from '../examples/variants';
 import { AdvancedPatternsExample } from '../examples/advanced-patterns';
+import { ColorPlayground } from './ColorPlayground';
 import { BadgeMode } from '../src/types/types';
 
-type Tab = 'interactive' | 'basic' | 'variants' | 'advanced';
+type Tab = 'interactive' | 'basic' | 'variants' | 'advanced' | 'playground';
 
 export function DemoApp() {
   const [activeTab, setActiveTab] = useState<Tab>('interactive');
@@ -31,7 +32,7 @@ export function DemoApp() {
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
     }}>
       <header style={{ textAlign: 'center', marginBottom: '40px' }}>
-        <h1 style={{ color: '#333', fontSize: '2.5rem' }}>Badge Generator</h1>
+        <h1 style={{ color: '#333', fontSize: '2.5rem' }}>Consistint</h1>
         <p style={{ color: '#666', fontSize: '1.1rem' }}>
           A React component library for creating colorful, auto-generated badges
         </p>
@@ -51,7 +52,7 @@ export function DemoApp() {
             View on GitHub
           </a>
           <a
-            href="https://www.npmjs.com/package/badge-generator"
+            href="https://www.npmjs.com/package/consistint"
             style={{
               display: 'inline-block',
               padding: '10px 20px',
@@ -91,6 +92,12 @@ export function DemoApp() {
         >
           Advanced Patterns
         </button>
+        <button
+          style={tabStyle(activeTab === 'playground')}
+          onClick={() => setActiveTab('playground')}
+        >
+          🎨 Color Playground
+        </button>
       </div>
 
       <div style={{
@@ -103,6 +110,7 @@ export function DemoApp() {
         {activeTab === 'basic' && <BasicUsageExample />}
         {activeTab === 'variants' && <VariantsExample />}
         {activeTab === 'advanced' && <AdvancedPatternsExample />}
+        {activeTab === 'playground' && <ColorPlayground />}
       </div>
 
       <footer style={{
