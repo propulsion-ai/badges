@@ -1,7 +1,7 @@
 # Badge Generator
 
 [![CI](https://github.com/propulsion-ai/badges/actions/workflows/ci.yml/badge.svg)](https://github.com/propulsion-ai/badges/actions/workflows/ci.yml)
-[![npm version](https://img.shields.io/npm/v/badge-generator.svg)](https://www.npmjs.com/package/badge-generator)
+[![npm version](https://img.shields.io/npm/v/@propulsion-ai/badge-generator.svg)](https://www.npmjs.com/package/@propulsion-ai/badge-generator)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-18%2B-61dafb.svg)](https://reactjs.org/)
@@ -21,17 +21,17 @@ A lightweight React component library for creating beautiful, auto-colored badge
 ## 📦 Installation
 
 ```bash
-npm install badge-generator
+npm install @propulsion-ai/badge-generator
 # or
-yarn add badge-generator
+yarn add @propulsion-ai/badge-generator
 # or
-pnpm add badge-generator
+pnpm add @propulsion-ai/badge-generator
 ```
 
 ## 🚀 Quick Start
 
 ```tsx
-import { Badge } from 'badge-generator';
+import { Badge } from '@propulsion-ai/badge-generator';
 
 function App() {
   return (
@@ -97,7 +97,7 @@ The main component for rendering badges with pastel colors.
 Generate color pairs for custom badge implementations.
 
 ```ts
-import { generateBadgeColorPairs } from 'badge-generator';
+import { generateBadgeColorPairs } from '@propulsion-ai/badge-generator';
 
 const colors = generateBadgeColorPairs('example');
 // Returns: { backgroundColor: '#...', textColor: '#...' }
@@ -108,7 +108,7 @@ const colors = generateBadgeColorPairs('example');
 Generate complete color scheme with pastel colors.
 
 ```ts
-import { generateBadgeColors } from 'badge-generator';
+import { generateBadgeColors } from '@propulsion-ai/badge-generator';
 
 const colors = generateBadgeColors('example', 'light');
 // Returns: { backgroundColor: '#...', borderColor: '#...', textColor: '#...' }
@@ -219,14 +219,14 @@ Developed with ❤️ by [Propulsion AI](https://propulsion.ai)
 ## 🔗 Links
 
 - [Demo](https://propulsion-ai.github.io/badges/)
-- [npm Package](https://www.npmjs.com/package/badge-generator)
+- [npm Package](https://www.npmjs.com/package/@propulsion-ai/badge-generator)
 - [GitHub Repository](https://github.com/propulsion-ai/badges)
 - [Issue Tracker](https://github.com/propulsion-ai/badges/issues)
 
 ## 📈 Stats
 
-![npm downloads](https://img.shields.io/npm/dm/badge-generator.svg)
-![bundle size](https://img.shields.io/bundlephobia/minzip/badge-generator)
+![npm downloads](https://img.shields.io/npm/dm/@propulsion-ai/badge-generator.svg)
+![bundle size](https://img.shields.io/bundlephobia/minzip/@propulsion-ai/badge-generator)
 ![GitHub stars](https://img.shields.io/github/stars/propulsion-ai/badges)
 
 ---

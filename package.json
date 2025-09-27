@@ -1,10 +1,15 @@
 {
-  "name": "badge-generator",
+  "name": "@propulsion-ai/badge-generator",
   "version": "1.0.0",
-  "description": "A reusable badge color generator with TypeScript support",
+  "description": "A lightweight React component library for creating beautiful, auto-colored badges with pastel colors",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsc -p config/tsconfig.build.json",
     "test": "jest --config config/jest.config.js",
@@ -14,7 +19,8 @@
     "build:demo": "vite build --config vite.demo.config.ts",
     "preview": "vite preview --config vite.demo.config.ts",
     "type-check": "tsc --noEmit",
-    "lint": "eslint src --ext .ts,.tsx"
+    "lint": "eslint src --ext .ts,.tsx",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "color-hash": "^2.0.2",
@@ -45,8 +51,23 @@
     "react",
     "typescript",
     "ui",
-    "component"
+    "component",
+    "pastel",
+    "tags",
+    "labels"
   ],
   "author": "Propulsion AI",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/propulsion-ai/badges.git"
+  },
+  "bugs": {
+    "url": "https://github.com/propulsion-ai/badges/issues"
+  },
+  "homepage": "https://propulsion-ai.github.io/badges/",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
 }
