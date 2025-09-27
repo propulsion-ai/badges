@@ -216,6 +216,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Developed with ❤️ by [Propulsion AI](https://propulsion.ai)
 
+Co-authored by [Claude](https://claude.ai) - AI assistant that helped architect, implement, and refine the library's pastel color generation system and overall structure.
+
 ## 🔗 Links
 
 - [Demo](https://propulsion-ai.github.io/badges/)
