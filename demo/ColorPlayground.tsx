@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-import { Badge } from '../src/components/Badge';
-import { generatePastelColors } from '../src/utils/colorMapper';
+import { useState } from 'react';
 import { getColorFromText } from '../src/utils/colorMapper';
 
 export function ColorPlayground() {

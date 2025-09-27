@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Badge } from '../src/components/Badge';
 import type { BadgeVariant, BadgeMode } from '../src/types/types';
 

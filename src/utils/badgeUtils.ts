@@ -21,7 +21,7 @@ export function getBadgeStyles(
   variant: BadgeVariant = 'filled',
   config: BadgeConfig = {}
 ): React.CSSProperties {
-  const { font, borderWidth = 0.5 } = config;
+  const { font, fontSize, fontWeight, borderWidth = 0.5 } = config;
 
   const baseStyles: React.CSSProperties = {
     boxSizing: 'border-box',
@@ -32,12 +32,12 @@ export function getBadgeStyles(
     padding: '2px 5px',
     gap: '10px',
     borderRadius: '5px',
-    // Inherit typography by default, only set font if explicitly provided
+    // Inherit typography by default, only set if explicitly provided
     ...(font && { fontFamily: font }),
-    // Don't set font properties unless needed - inherit from parent
+    ...(fontSize && { fontSize }),
+    ...(fontWeight && { fontWeight }),
+    // Don't set font properties unless provided - inherit from parent
     fontStyle: 'inherit',
-    fontWeight: 'inherit',
-    fontSize: 'inherit',
     lineHeight: 'inherit',
     flexShrink: 0,
     userSelect: 'none',

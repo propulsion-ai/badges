@@ -3,6 +3,8 @@ export type BadgeMode = 'light' | 'dark';
 
 export interface BadgeConfig {
   font?: string;
+  fontSize?: string | number;
+  fontWeight?: string | number;
   borderWidth?: number;
 }
 

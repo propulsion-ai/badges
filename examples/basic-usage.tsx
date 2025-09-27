@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Badge } from '../src/components/Badge';
 import { BadgeMode } from '../src/types/types';
 
@@ -55,8 +55,11 @@ export function BasicUsageExample() {
       </div>
 
       <h3>With Custom Font</h3>
-      <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
-        <Badge text="Arial Font" mode={mode} font="Arial" />
+      <div style={{ display: 'flex', gap: '10px', marginBottom: '20px', flexWrap: 'wrap' }}>
+        <Badge text="Inter" mode={mode} font="Inter" />
+        <Badge text="JetBrains Mono" mode={mode} font="JetBrains Mono" />
+        <Badge text="Roboto" mode={mode} font="Roboto" />
+        <Badge text="Arial" mode={mode} font="Arial" />
         <Badge text="System UI" mode={mode} font="system-ui" />
         <Badge text="Monospace" mode={mode} font="monospace" />
       </div>

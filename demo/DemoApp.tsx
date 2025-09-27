@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { BadgeDemo } from '../src/components/BadgeDemo';
 import { BasicUsageExample } from '../examples/basic-usage';
 import { VariantsExample } from '../examples/variants';
 import { AdvancedPatternsExample } from '../examples/advanced-patterns';
 import { ColorPlayground } from './ColorPlayground';
-import { BadgeMode } from '../src/types/types';
 
 type Tab = 'interactive' | 'basic' | 'variants' | 'advanced' | 'playground';
 
 export function DemoApp() {
   const [activeTab, setActiveTab] = useState<Tab>('interactive');
-  const [mode, setMode] = useState<BadgeMode>('light');
 
   const tabStyle = (isActive: boolean) => ({
     padding: '10px 20px',

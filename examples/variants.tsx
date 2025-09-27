@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Badge } from '../src/components/Badge';
-import { BadgeVariant, BadgeMode } from '../src/types/types';
+import { BadgeMode } from '../src/types/types';
 
 export function VariantsExample() {
   const [mode, setMode] = useState<BadgeMode>('light');
-  const variants: BadgeVariant[] = ['filled', 'outline'];
   const texts = ['Development', 'Production', 'Staging', 'Testing'];
 
   return (

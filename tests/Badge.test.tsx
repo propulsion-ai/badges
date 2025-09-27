@@ -1,4 +1,4 @@
-import React from 'react';
+// React import not needed for JSX in React 17+
 import { render, screen } from '@testing-library/react';
 import { Badge } from '../src/components/Badge';
 
@@ -15,8 +15,8 @@ describe('Badge Component', () => {
     expect(badge.style.color).toBeTruthy();
   });
 
-  it('applies solid variant styling', () => {
-    const { container } = render(<Badge text="Solid" variant="solid" />);
+  it('applies filled variant styling', () => {
+    const { container } = render(<Badge text="Filled" variant="filled" />);
     const badge = container.firstChild as HTMLElement;
     expect(badge.style.backgroundColor).toBeTruthy();
     expect(badge.style.color).toBeTruthy();

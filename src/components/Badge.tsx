@@ -7,6 +7,8 @@ interface BadgeProps {
   variant?: BadgeVariant;
   mode?: BadgeMode;
   font?: string;
+  fontSize?: string | number;
+  fontWeight?: string | number;
   borderWidth?: number;
   className?: string;
   onClick?: () => void;
@@ -19,6 +21,8 @@ export const Badge: React.FC<BadgeProps> = ({
   variant = 'filled',
   mode = 'light',
   font,
+  fontSize,
+  fontWeight,
   borderWidth,
   className = '',
   onClick,
@@ -32,6 +36,8 @@ export const Badge: React.FC<BadgeProps> = ({
   const colors = customColors || generateBadgeColors(text, mode, colorParams);
   const config: BadgeConfig = {};
   if (font) config.font = font;
+  if (fontSize) config.fontSize = fontSize;
+  if (fontWeight) config.fontWeight = fontWeight;
   config.borderWidth = effectiveBorderWidth;
   const styles = getBadgeStyles(colors, variant, config);
 
