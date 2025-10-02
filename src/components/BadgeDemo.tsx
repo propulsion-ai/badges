@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Badge } from './Badge';
 import { BadgeVariant, BadgeMode } from '../types/types';
+import { X } from '@phosphor-icons/react';
 
 export const BadgeDemo: React.FC = () => {
   const [inputText, setInputText] = useState('Example Badge');
@@ -340,6 +341,76 @@ export const BadgeDemo: React.FC = () => {
               borderWidth={0}
               onClick={() => alert('Ghost badge clicked!')}
             />
+          </div>
+        </div>
+
+        {/* Removable Badges */}
+        <div style={{ marginBottom: '3rem' }}>
+          <h3 style={{ fontSize: '18px', marginBottom: '1rem' }}>Removable Badges</h3>
+          <p style={{ fontSize: '14px', color: mode === 'dark' ? '#999' : '#666', marginBottom: '1.5rem' }}>
+            Badges with close functionality - default X icon or custom icons
+          </p>
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '1.5rem',
+            padding: '1.5rem',
+            backgroundColor: mode === 'dark' ? '#2a2a2a' : '#f9f9f9',
+            borderRadius: '8px'
+          }}>
+            <div>
+              <div style={{ fontSize: '13px', marginBottom: '10px', color: mode === 'dark' ? '#999' : '#666', fontWeight: 500 }}>
+                Default close icon (×)
+              </div>
+              <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                <Badge text="React" variant={variant} mode={mode} onRemove={() => alert('Removed React')} />
+                <Badge text="TypeScript" variant={variant} mode={mode} onRemove={() => alert('Removed TypeScript')} />
+                <Badge text="Vite" variant={variant} mode={mode} onRemove={() => alert('Removed Vite')} />
+              </div>
+            </div>
+            <div>
+              <div style={{ fontSize: '13px', marginBottom: '10px', color: mode === 'dark' ? '#999' : '#666', fontWeight: 500 }}>
+                Custom emoji icon
+              </div>
+              <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                <Badge text="Delete" variant={variant} mode={mode} onRemove={() => alert('Removed')} closeIcon="🗑️" closeIconSize={10} />
+                <Badge text="Cancel" variant={variant} mode={mode} onRemove={() => alert('Removed')} closeIcon="❌" closeIconSize={8} />
+                <Badge text="Close" variant={variant} mode={mode} onRemove={() => alert('Removed')} closeIcon="⊗" closeIconSize={12} />
+              </div>
+            </div>
+            <div>
+              <div style={{ fontSize: '13px', marginBottom: '10px', color: mode === 'dark' ? '#999' : '#666', fontWeight: 500 }}>
+                Custom SVG icon (must use currentColor to inherit badge text color)
+              </div>
+              <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                <Badge
+                  text="Custom SVG"
+                  variant={variant}
+                  mode={mode}
+                  onRemove={() => alert('Removed')}
+                  closeIcon={
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                      <path d="M20 20L4 4.00003M20 4L4.00002 20" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                    </svg>
+                  }
+                />
+              </div>
+            </div>
+            <div>
+              <div style={{ fontSize: '13px', marginBottom: '10px', color: mode === 'dark' ? '#999' : '#666', fontWeight: 500 }}>
+                Phosphor Icons (automatically inherit color)
+              </div>
+              <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                <Badge
+                  text="CustomIconLibrary"
+                  variant={variant}
+                  mode={mode}
+                  onRemove={() => alert('Removed')}
+                  closeIcon={<X weight="bold" />}
+                  closeIconSize={16}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

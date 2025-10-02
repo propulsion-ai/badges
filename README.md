@@ -112,6 +112,9 @@ The main component for rendering badges with pastel colors.
 | `borderWidth` | `number` | `0.5` | Border width in pixels (0 for no border) |
 | `className` | `string` | `undefined` | Additional CSS classes |
 | `onClick` | `function` | `undefined` | Click handler for interactive badges |
+| `onRemove` | `function` | `undefined` | Callback when close button is clicked |
+| `closeIcon` | `React.ReactNode` | `'×'` | Custom close icon (use `currentColor` for SVGs to inherit badge color) |
+| `closeIconSize` | `number` | `14` | Size of the close icon in pixels |
 
 #### Examples
 
@@ -130,6 +133,38 @@ The main component for rendering badges with pastel colors.
 
 // Custom font
 <Badge text="Custom" font="Arial" />
+
+// Removable badge with default X icon
+<Badge text="Tag" onRemove={() => console.log('removed')} />
+
+// Removable badge with custom emoji
+<Badge
+  text="Tag"
+  onRemove={() => console.log('removed')}
+  closeIcon="🗑️"
+  closeIconSize={12}
+/>
+
+// Removable badge with custom SVG icon (use currentColor to inherit badge color)
+<Badge
+  text="Tag"
+  onRemove={() => console.log('removed')}
+  closeIcon={
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <path d="M1 1L13 13M13 1L1 13" stroke="currentColor" strokeWidth="2"/>
+    </svg>
+  }
+/>
+
+// With icon library (e.g., Phosphor Icons - automatically inherits color)
+import { X } from '@phosphor-icons/react';
+
+<Badge
+  text="Tag"
+  onRemove={() => console.log('removed')}
+  closeIcon={<X weight="bold" />}
+  closeIconSize={16}
+/>
 ```
 
 ### Utility Functions

@@ -76,24 +76,42 @@ export function AdvancedPatternsExample() {
 
       <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
         {tags.map(tag => (
-          <div
+          <Badge
             key={tag}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}
-          >
-            <Badge text={tag} variant={variant} mode={mode} />
-            <button
-              onClick={() => removeTag(tag)}
-              style={{
-                background: 'transparent',
-                border: 'none',
-                cursor: 'pointer',
-                fontSize: '18px'
-              }}
-            >
-              ×
-            </button>
-          </div>
+            text={tag}
+            variant={variant}
+            mode={mode}
+            onRemove={() => removeTag(tag)}
+          />
         ))}
+      </div>
+
+      <h3 style={{ marginTop: '40px' }}>Removable Badges with Custom Icons</h3>
+      <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+        <Badge
+          text="Default"
+          variant={variant}
+          mode={mode}
+          onRemove={() => alert('Removed!')}
+        />
+        <Badge
+          text="Custom Icon"
+          variant={variant}
+          mode={mode}
+          onRemove={() => alert('Removed!')}
+          closeIcon={<span style={{ fontSize: '12px' }}>🗑️</span>}
+        />
+        <Badge
+          text="Custom SVG"
+          variant={variant}
+          mode={mode}
+          onRemove={() => alert('Removed!')}
+          closeIcon={
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor">
+              <path d="M1 1L9 9M9 1L1 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
+          }
+        />
       </div>
 
       <h3 style={{ marginTop: '40px' }}>User Roles & Permissions</h3>
